@@ -78,7 +78,7 @@ public class AINDDAlgo extends AINDDAlgorithm implements InclusionDependencyAlgo
 		configs.add(cleanTemp);
 
 		ConfigurationRequirementBoolean deleteMode = new ConfigurationRequirementBoolean(Identifier.DELETE_MODE.name());
-		Boolean[] defaultDeleteTemp = new Boolean[]{this.cleanTemp};
+		Boolean[] defaultDeleteTemp = new Boolean[]{this.deleteMode};
 		deleteMode.setDefaultValues(defaultDeleteTemp);
 		deleteMode.setRequired(true);
 		configs.add(deleteMode);
