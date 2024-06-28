@@ -35,3 +35,8 @@ We provide the algorithm code and datasets required for the experiments in [here
 
 AINDD is released under the [Apache 2.0 license](https://github.com/A-IND/AINDD/blob/main/LICENSE). Some basic data structure's source code is imported from [BINDER](https://github.com/HPI-Information-Systems/metanome-algorithms/tree/master/BINDER)
 
+
+# Remarks
+
+Due to time constraints, we will be updating the repository later and expect to finish by 2024.7.8
+
