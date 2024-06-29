@@ -28,7 +28,7 @@ public class AINDDAlgorithm {
     private TableInfoFactory tableInfoFactory;
     protected Configuration configuration;
 	protected String[] tableNames = null;
-	protected String tempFolderPath = "AproIND_temp";
+	protected String tempFolderPath = "AINDD_temp";
 	protected boolean cleanTemp = true;
 	protected boolean deleteMode = false;
 	protected int inputRowLimit = -1;
@@ -48,7 +48,7 @@ public class AINDDAlgorithm {
 	protected List<List<Boolean>> partition_backed = null;
 	protected PriorityQueue<PartitionSize> maxPartitionHeap = null;
 	protected PriorityQueue<PartitionSize> maxPartitionHeapCurr = null;
-	protected int bloomSize = 1024;
+	protected int filterSize = 1024;
 	protected int violate_per;
 	protected List<List<ThreeLayersFilter>> filterInsert_list = null;
 	protected boolean[] isNotFullMem;
@@ -425,8 +425,8 @@ public class AINDDAlgorithm {
 	}
 
 
-	public void buildFilter(int bloomSize, String colName, int colIndex, int partIndex, Set<String> values) {
-		ThreeLayersFilter<String> threeLayersFilter = new ThreeLayersFilter<>(bloomSize,colName,colIndex,partIndex);
+	public void buildFilter(int filterSize, String colName, int colIndex, int partIndex, Set<String> values) {
+		ThreeLayersFilter<String> threeLayersFilter = new ThreeLayersFilter<>(filterSize,colName,colIndex,partIndex);
 		for (String s : values) {
 			if (s == null) continue;
 			threeLayersFilter.addBloomSet(s);
@@ -434,8 +434,8 @@ public class AINDDAlgorithm {
 		filterInsert_list.get(colIndex).set(partIndex, threeLayersFilter);
 	}
 
-	public void buildFilterDeletion(int bloomSize, String colName, int colIndex, int partIndex, HashMap<String, Integer> map) {
-		ThreeLayersFilterDelete<String> threeLayersFilterDelete = new ThreeLayersFilterDelete<>(bloomSize,colName,colIndex,partIndex);
+	public void buildFilterDeletion(int filterSize, String colName, int colIndex, int partIndex, HashMap<String, Integer> map) {
+		ThreeLayersFilterDelete<String> threeLayersFilterDelete = new ThreeLayersFilterDelete<>(filterSize,colName,colIndex,partIndex);
 		for (String s : map.keySet()) {
 			threeLayersFilterDelete.addBloomSet(s,map.get(s));
 		}
@@ -462,7 +462,7 @@ public class AINDDAlgorithm {
 			}
 			for (int colNum = 0; colNum < numColumns; colNum++) {
 				Set<String> bucketInMem = partitions_list.get(colNum).get(partitionNum);
-				buildFilter(this.bloomSize, this.columnNames.get(colNum),colNum, partitionNum, bucketInMem);
+				buildFilter(this.filterSize, this.columnNames.get(colNum),colNum, partitionNum, bucketInMem);
 			}
 			for (int colNum = 0; colNum < numColumns; colNum++) {
 				partitions_list.get(colNum).set(partitionNum, new HashSet<>());
@@ -552,7 +552,7 @@ public class AINDDAlgorithm {
 			}
 			for (int colNum = 0; colNum < numColumns; colNum++) {
 				HashMap<String, Integer> bucketInMem = partitions_delete.get(colNum).get(partitionNum);
-				buildFilterDeletion(this.bloomSize, this.columnNames.get(colNum),colNum, partitionNum, bucketInMem);
+				buildFilterDeletion(this.filterSize, this.columnNames.get(colNum),colNum, partitionNum, bucketInMem);
 			}
 
 			// free bucket

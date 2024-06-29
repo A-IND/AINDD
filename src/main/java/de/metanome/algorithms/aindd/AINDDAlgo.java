@@ -59,11 +59,11 @@ public class AINDDAlgo extends AINDDAlgorithm implements InclusionDependencyAlgo
 		maxMemoryUsagePercentageLow.setRequired(true);
 		configs.add(maxMemoryUsagePercentageLow);
 
-		ConfigurationRequirementInteger bloomsize = new ConfigurationRequirementInteger(Identifier.FILTER_SIZE.name());
-		Integer[] bloomsize2 = new Integer[]{this.bloomSize};
-		bloomsize.setDefaultValues(bloomsize2);
-		bloomsize.setRequired(true);
-		configs.add(bloomsize);
+		ConfigurationRequirementInteger filtersize = new ConfigurationRequirementInteger(Identifier.FILTER_SIZE.name());
+		Integer[] filtersize2 = new Integer[]{this.filterSize};
+		filtersize.setDefaultValues(filtersize2);
+		filtersize.setRequired(true);
+		configs.add(filtersize);
 
 		ConfigurationRequirementInteger violate_rate = new ConfigurationRequirementInteger(Identifier.VIOLATE_PER_10000.name());
 		Integer[] violateRate = new Integer[]{this.violate_per};
@@ -126,7 +126,7 @@ public class AINDDAlgo extends AINDDAlgorithm implements InclusionDependencyAlgo
 			if (values[0] <= 0) {
 				throw new AlgorithmConfigurationException(AINDDAlgo.Identifier.FILTER_SIZE.name() + " must be greater than 0!");
 			}
-			this.bloomSize = values[0];
+			this.filterSize = values[0];
 		}
 		else if (Identifier.MAX_MEMORY_USAGE_PERCENTAGE_UP.name().equals(identifier)) {
 			if (values[0] <= 0) {
