@@ -26,8 +26,10 @@ You can learn more about usage of Metanome in [here](https://hpi.de/naumann/proj
 
 
 # **Comparative Experiments**
+The comparison algorithms used in AINDD experiments are [A-DeMarchi](https://github.com/A-IND/AINDD-Expt/tree/main/ComparisonAlgorithms/A-DeMarchi),[A-SPIDER](https://github.com/A-IND/AINDD-Expt/tree/main/ComparisonAlgorithms/A-SPIDER) and [BINDER](https://github.com/A-IND/AINDD-Expt/tree/main/ComparisonAlgorithms/BINDER).
 
 We provide the algorithm code and datasets required for the experiments in [here](https://github.com/A-IND/AINDD-Expt)
+
 
 
 
