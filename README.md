@@ -1,6 +1,6 @@
 # Introduction
 
-AINDD is a solution to Approximate Inclusion Dependency discovery. Given several tables of relational schema, AINDD efficiently find all AINDs for specific violation threshold.
+AINDD is a solution to Approximate Inclusion Dependency discovery. Given several tables, AINDD efficiently find all AINDs for specific violation threshold.
 
 
 
