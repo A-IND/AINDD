@@ -19,6 +19,7 @@ To run our algorithm, you need to :
 - put `AINDD-1.0-SNAPSHOT.jar` under `Metanome/backend/WEB-INF/classes/algorithms`
 - run AINDD on Metanome
 
+
 When you run AINDD on the Metanome platform, you need to set:
 
 - `MAX_MEMORY_USAGE_PERCENTAGE_UP` The upper bound of utilization required for memory management, which we recommend setting to 80 (in %), as we set in our experiments.
@@ -28,7 +29,9 @@ When you run AINDD on the Metanome platform, you need to set:
 - `VIOLATE_PER_10000` violation threshold (per 10,000)
 - `DELETE_MODE` whether to use the delete semantics
 
+
 All of the above parameters are set via the Metanome front-end page.
+
 
 You can learn more about usage of Metanome in [here](https://hpi.de/naumann/projects/data-profiling-and-analytics/metanome-data-profiling/algorithms.html)
 
